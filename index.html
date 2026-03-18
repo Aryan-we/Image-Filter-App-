@@ -294,6 +294,7 @@ function applyFilter(type) {
         image.style.filter = "none";
     }
 }
+
 function download() {
     const img = document.getElementById("img");
 
@@ -302,8 +303,6 @@ function download() {
         return;
     }
 
-
-
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -311,17 +310,19 @@ function download() {
     canvas.height = img.naturalHeight;
 
     ctx.filter = window.getComputedStyle(img).filter;
-
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-    
-    let name=prompt("Enter the image name");
-    if(name !=null){
+    let name = prompt("Enter the image name");
+
+    if (name === null) return;
+
+    name = name.trim();
+    if (name === "") name = "filtered-image";
+
     const link = document.createElement("a");
-    link.download =name+".png";
+    link.download = name + ".png";
     link.href = canvas.toDataURL();
     link.click();
-    }
 }
 
 
