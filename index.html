@@ -154,15 +154,11 @@ button:hover {
 <h2>Image Filter App</h2>
 
 <div class="container">
-
-    <!-- Upload -->
         <button class="upload">Upload Image
         <input type="file" accept="image/*" onchange="upl()" id="upload">
     </button>
-    <!-- Image -->
+    <img id="img">
    
-
-
     <div class="controls">
         <p>Brightness: <span id="val1">0</span></p>
         <input type="range" id="bright" min="0" max="200" value="100" oninput="bright()">
