@@ -303,6 +303,15 @@ function download() {
         return;
     }
 
+    let name = prompt("Enter image name");
+    if (name === null || name.trim() === "") {
+        alert("Image name is required!");
+        return;
+    }
+
+    name = name.trim();
+    name = name.replace(/\.[^/.]+$/, "");
+
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -312,16 +321,9 @@ function download() {
     ctx.filter = window.getComputedStyle(img).filter;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-    let name = prompt("Enter the image name");
-
-    if (name === null) return;
-
-    name = name.trim();
-    if (name === "") name = "filtered-image";
-
     const link = document.createElement("a");
     link.download = name + ".png";
-    link.href = canvas.toDataURL();
+    link.href = canvas.toDataURL("image/png");
     link.click();
 }
 
